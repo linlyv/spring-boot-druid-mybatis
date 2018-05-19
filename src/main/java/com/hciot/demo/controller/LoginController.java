@@ -36,7 +36,7 @@ public class LoginController {
 				else {
 					System.out.println("error");
 					return "<html><body>\r\n" + 				
-					"<h1style=\"color:red;\">密码错误!<h1>\r\n" + 
+					"<h1 style=\"color:red;\">密码错误!<h1>\r\n" + 
 					"</body></html>";
 				}
 			}
