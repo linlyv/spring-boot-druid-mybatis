@@ -48,7 +48,7 @@ public class LoginController {
 	    	}
 	    	
 	    }
-	    
+	    //________________作业6:修改密码
 	    @RequestMapping(value="/newpassword",method = RequestMethod.GET)
         @ResponseBody
         public String newpassword(String name,String oldpassword,String newpassword) throws Exception {
