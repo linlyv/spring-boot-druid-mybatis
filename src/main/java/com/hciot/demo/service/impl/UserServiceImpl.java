@@ -61,4 +61,9 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return usermapper.selectByPasswordFillter(password);
 	}
+
+	public int updateByPrimary(User user) {
+		// TODO Auto-generated method stub
+		return usermapper.updateByPrimaryKeySelective(user);
+	}
 }

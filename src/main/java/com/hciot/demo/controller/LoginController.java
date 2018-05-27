@@ -36,7 +36,7 @@ public class LoginController {
 				else {
 					System.out.println("error");
 					return "<html><body>\r\n" + 				
-					"<h1style=\"color:red;\">密码错误!<h1>\r\n" + 
+					"<h1 style=\"color:red;\">密码错误!<h1>\r\n" + 
 					"</body></html>";
 				}
 			}
@@ -48,4 +48,49 @@ public class LoginController {
 	    	}
 	    	
 	    }
+	    
+	    @RequestMapping(value="/newpassword",method = RequestMethod.GET)
+        @ResponseBody
+        public String newpassword(String name,String oldpassword,String newpassword) throws Exception {
+                
+                System.out.println(name);
+                System.out.println(oldpassword);
+                
+                User user = new User();
+                
+                System.out.println("newpassword被调用");
+                user=userServiceImpl.getUserByName(name);
+                if (user!=null&&oldpassword!=null) {
+                            if(user.getPassword().equals(oldpassword)&&newpassword!=null) {
+                                       user.setPassword(newpassword);
+                                            if (userServiceImpl.updateByPrimary(user)>0) {
+                                                    System.out.println("ok");
+                                                    return "密码修改ok";
+                                            }
+                                            else {
+                                                    return "更新失败";
+                                            }                                                                                                                                
+                            }
+                            else if(newpassword==null) {
+                            	return "新密码不能为空";
+                            }
+                            else {
+                                    System.out.println("error");
+                                    return "旧密码错误";
+                            }
+                    }
+                else if(user==null) {
+                	return "用户名不能为空";
+                }
+                else if(oldpassword==null) {
+                	return "旧密码不能为空";
+                }
+                else {
+                        System.out.println("none");
+                        return "用户名不存在";
+                }
+                
+        }
+	    
+	    
 }
